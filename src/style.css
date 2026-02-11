@@ -43,7 +43,7 @@ body {
 
 header {
     padding: 20px;
-    margin: 10px;
+    margin: 10px 10px 0 10px;
 }
 
 header h1 {
@@ -81,7 +81,7 @@ nav {
 
 #main-content {
     flex: 1;
-    padding: 15px;
+    padding: 5px 15px 15px 15px;
     overflow-y: auto;
 }
 
@@ -256,7 +256,7 @@ nav {
     justify-content: center;
     align-items: center;
     padding: 30px 20px;
-    margin: 10px 0;
+    margin: 0 0 10px 0;
     text-align: center;
     position: relative;
     overflow: hidden;
