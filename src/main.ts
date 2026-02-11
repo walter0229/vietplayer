@@ -115,6 +115,15 @@ class VietPlayerApp {
       <div id="word-list" class="fade-in" style="margin-top: 15px;">
         ${this.renderWordList()}
       </div>
+
+      <div class="glass-panel card fade-in" style="margin-top: 30px; padding: 20px; border-style: dashed;">
+        <h3 style="margin-top:0; font-size: 0.9rem; color: #8892b0; letter-spacing:1px;">데이터 백업 및 모바일 전송</h3>
+        <p style="font-size:0.75rem; color:#555; margin-bottom:15px;">노트북의 단어를 휴대폰으로 옮기려면 [내보내기] 후 텍스트를 복사하여 휴대폰에서 [가져오기] 하세요.</p>
+        <div style="display: flex; gap: 10px;">
+          <button id="export-btn" class="action-btn" style="padding: 10px; font-size: 0.8rem;">내보내기 (복사)</button>
+          <button id="import-btn" class="action-btn" style="padding: 10px; font-size: 0.8rem;">가져오기 (붙여넣기)</button>
+        </div>
+      </div>
     `;
 
         document.getElementById('save-btn')?.addEventListener('click', () => this.saveWord());
@@ -123,12 +132,70 @@ class VietPlayerApp {
             this.render();
         });
 
+        document.getElementById('export-btn')?.addEventListener('click', () => this.exportData());
+        document.getElementById('import-btn')?.addEventListener('click', () => this.importData());
+
         const searchInput = document.getElementById('search-input') as HTMLInputElement;
         searchInput?.addEventListener('input', (e) => {
             this.searchQuery = (e.target as HTMLInputElement).value;
             const wordListContainer = document.getElementById('word-list');
             if (wordListContainer) wordListContainer.innerHTML = this.renderWordList();
         });
+    }
+
+    private exportData() {
+        const data = {
+            words: this.words,
+            history: this.playHistory
+        };
+        const json = JSON.stringify(data);
+        navigator.clipboard.writeText(json).then(() => {
+            alert('단어 데이터가 복사되었습니다! 카카오톡 등으로 나에게 전송한 뒤 휴대폰에서 [가져오기] 하세요.');
+        }).catch(err => {
+            console.error('복사 실패:', err);
+            alert('복사 실패: ' + json); // 수동 복사 유도
+        });
+    }
+
+    private importData() {
+        const json = prompt('복사한 데이터 문자열을 여기에 붙여넣으세요:');
+        if (!json) return;
+
+        try {
+            const data = JSON.parse(json);
+            if (!data.words || !Array.isArray(data.words)) throw new Error('올바른 데이터 형식이 아닙니다.');
+
+            if (confirm(`기존 데이터를 유지하고 새로운 단어(${data.words.length}개)를 합치겠습니까?\n(취소를 누르면 기존 데이터가 삭제되고 덮어씌워집니다.)`)) {
+                // 병합 로직 (ID 중복 체크)
+                data.words.forEach((newWord: Word) => {
+                    if (!this.words.find(w => w.id === newWord.id)) {
+                        this.words.push(newWord);
+                    }
+                });
+                // 히스토리 병합
+                if (data.history) {
+                    data.history.forEach((newH: any) => {
+                        const existing = this.playHistory.find(h => h.date === newH.date);
+                        if (existing) {
+                            existing.count = Math.max(existing.count, newH.count);
+                        } else {
+                            this.playHistory.push(newH);
+                        }
+                    });
+                }
+            } else {
+                // 덮어쓰기
+                this.words = data.words;
+                this.playHistory = data.history || [];
+            }
+
+            this.saveData();
+            localStorage.setItem('vietplayer_history', JSON.stringify(this.playHistory));
+            alert('데이터를 성공적으로 가져왔습니다!');
+            this.render();
+        } catch (e) {
+            alert('가져오기 실패: 올바른 데이터 형식이 아닙니다.');
+        }
     }
 
     private saveWord() {
