@@ -94,7 +94,7 @@ class VietPlayerApp {
         const editingWord = isEditing ? this.words.find(w => w.id === this.editingWordId) : null;
 
         container.innerHTML = `
-      <div class="glass-panel card fade-in" style="padding: 20px;">
+      <div class="glass-panel card fade-in" style="padding: 16px;">
         <h2 style="margin-top:0; font-size: 1.2rem; color: var(--accent-blue);">
             ${isEditing ? '단어 수정' : '단어 추가'}
         </h2>
@@ -116,12 +116,12 @@ class VietPlayerApp {
         ${this.renderWordList()}
       </div>
 
-      <div class="glass-panel card fade-in" style="margin-top: 30px; padding: 20px; border-style: dashed;">
+      <div class="glass-panel card fade-in" style="margin-top: 30px; padding: 16px; border-style: dashed;">
         <h3 style="margin-top:0; font-size: 0.9rem; color: #8892b0; letter-spacing:1px;">데이터 백업 및 모바일 전송</h3>
         <p style="font-size:0.75rem; color:#555; margin-bottom:15px;">노트북의 단어를 휴대폰으로 옮기려면 [내보내기] 후 텍스트를 복사하여 휴대폰에서 [가져오기] 하세요.</p>
         <div style="display: flex; gap: 10px;">
-          <button id="export-btn" class="action-btn" style="padding: 10px; font-size: 0.8rem;">내보내기 (복사)</button>
-          <button id="import-btn" class="action-btn" style="padding: 10px; font-size: 0.8rem;">가져오기 (붙여넣기)</button>
+          <button id="export-btn" class="action-btn" style="padding: 8px; font-size: 0.75rem;">내보내기 (복사)</button>
+          <button id="import-btn" class="action-btn" style="padding: 8px; font-size: 0.75rem;">가져오기 (붙여넣기)</button>
         </div>
       </div>
     `;

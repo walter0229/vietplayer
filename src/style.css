@@ -118,13 +118,13 @@ nav {
 /* Futuristic Inputs & Buttons */
 .futuristic-input {
     width: 100%;
-    padding: 15px;
+    padding: 11px 12px;
     margin-bottom: 15px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--glass-border);
     border-radius: 12px;
     color: var(--text-white);
-    font-size: 1rem;
+    font-size: 0.9rem;
     outline: none;
     transition: all 0.3s ease;
 }
@@ -137,7 +137,7 @@ nav {
 
 .action-btn {
     flex: 1;
-    padding: 15px;
+    padding: 11px;
     border: none;
     border-radius: 12px;
     font-weight: 700;
@@ -161,7 +161,7 @@ nav {
 /* Search Bar */
 .search-bar {
     width: 100%;
-    padding: 12px 15px;
+    padding: 9px 12px;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--glass-border);
     border-radius: 12px;
