@@ -388,7 +388,7 @@ class VietPlayerApp {
         </div>
         
         <div class="player-controls">
-          <button id="prev-btn" class="nav-btn" style="flex:none; width:60px; height:60px; border-radius:50%; font-size:0.7rem;">PREV</button>
+          <button id="prev-btn" class="nav-btn" style="flex:none; width:48px; height:48px; border-radius:50%; font-size:0.6rem;">PREV</button>
           
           <button id="play-btn" class="play-main-btn">
             <!-- Premium Play Icon -->
@@ -403,7 +403,7 @@ class VietPlayerApp {
             </svg>
           </button>
           
-          <button id="next-btn" class="nav-btn" style="flex:none; width:60px; height:60px; border-radius:50%; font-size:0.7rem;">NEXT</button>
+          <button id="next-btn" class="nav-btn" style="flex:none; width:48px; height:48px; border-radius:50%; font-size:0.6rem;">NEXT</button>
         </div>
       </div>
     `;
