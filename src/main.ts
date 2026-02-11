@@ -291,17 +291,17 @@ class VietPlayerApp {
 
         container.innerHTML = `
       <div class="glass-panel card fade-in" style="padding: 20px;">
-        <h2 style="margin-top:0; font-size: 1.2rem; color: var(--accent-blue);">학습 통계</h2>
+        <h2 style="margin-top:0; font-size: 1.05rem; color: var(--accent-blue);">학습 통계</h2>
         
         <div class="stats-summary">
             <div class="stats-value">${todayCount}</div>
             <div class="stats-label-main">TODAY'S LISTENS</div>
         </div>
 
-        <div style="height: 250px; width: 100%;">
+        <div style="height: 200px; width: 100%;">
           <canvas id="stats-chart"></canvas>
         </div>
-        <div style="margin-top:20px; text-align:center; color:#8892b0; font-size:0.8rem;">
+        <div style="margin-top:15px; text-align:center; color:#8892b0; font-size:0.75rem;">
           최근 7일간의 일일 청취 횟수 추이
         </div>
       </div>
